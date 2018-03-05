@@ -1,0 +1,30 @@
+[
+  {
+    "username": "jeffcoh23",
+    "friend": true,
+  },
+  {
+    "username": "pscohen34",
+    "friend": true,
+  },
+  {
+    "username": "zoomjhc",
+    "friend": true,
+  },
+  {
+    "username": "nlcohen",
+    "friend": false,
+  },
+  {
+    "username": "dcohen",
+    "friend": false,
+  },
+  {
+    "username": "jgalina",
+    "friend": true,
+  },
+  {
+    "username": "aboehm",
+    "friend": true,
+  },
+]
