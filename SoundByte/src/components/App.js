@@ -19,7 +19,6 @@ class App extends React.Component {
     return (
       <MobXProvider Store={Store}>
           <View style={styles.container}>
-            <Header />
             <Navigation />
           </View>
     </MobXProvider>

@@ -7,10 +7,6 @@ import com.oblador.vectoricons.VectorIconsPackage;
 import guichaguri.trackplayer.TrackPlayer;
 import com.github.xinthink.rnmk.ReactMaterialKitPackage;
 import com.futurice.rctaudiotoolkit.AudioPackage;
-import com.futurice.rctaudiotoolkit.AudioPackage;
-import guichaguri.trackplayer.TrackPlayer;
-import com.github.xinthink.rnmk.ReactMaterialKitPackage;
-import com.oblador.vectoricons.VectorIconsPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
@@ -34,11 +30,7 @@ public class MainApplication extends Application implements ReactApplication {
             new VectorIconsPackage(),
             new TrackPlayer(),
             new ReactMaterialKitPackage(),
-            new AudioPackage(),
-            new AudioPackage(),
-            new TrackPlayer(),
-            new ReactMaterialKitPackage(),
-            new VectorIconsPackage()
+            new AudioPackage()
       );
     }
 
