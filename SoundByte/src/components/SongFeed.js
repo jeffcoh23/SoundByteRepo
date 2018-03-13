@@ -21,25 +21,18 @@ class SongFeed extends React.Component {
   };
 
   handleSongClick = (song) => {
-    this.setState({
-      song,
-    })
+    this.setState({ song })
+    return this.props.navigation.navigate('SongPlayer', { song: song })
   };
 
-
-  mapStoryCards = () => {
-    if (this.state.song) {
-      return <SongPlayer song={this.state.song}/>
-    }
-    return this.props.Store.getSongList.map(song => {
-      return <StoryCard key={song.id} item={song} onSelectSong={() => this.handleSongClick(song)}/>
-      });
+  mapStoryCards = (song) => {
+    return <StoryCard key={song.id} item={song} onSelectSong={() => this.handleSongClick(song)}/>
   }
 
   render() {
     return (
       <ScrollView>
-        {this.mapStoryCards()}
+        {this.props.Store.getSongList.map(this.mapStoryCards)}
       </ScrollView>
 
     )

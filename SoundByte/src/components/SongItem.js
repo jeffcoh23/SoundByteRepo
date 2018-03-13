@@ -20,7 +20,7 @@ class SongItem extends React.Component {
          <Text note>I{this.props.item.artists.map(artist => artist.name).join(', ')}</Text>
        </Body>
        <TouchableOpacity style={styles.addButton}>
-         <Icon name={'add-circle-outline'} size={35} style={{ color: 'black'}} />
+         <Icon onPress={this.props.handlePlayButton} name={(this.props.buttonType === 'play' ? 'play-circle-outline' : 'add-circle-outline')} size={35} style={{ color: 'black'}} />
       </TouchableOpacity>
      </ListItem>
    );

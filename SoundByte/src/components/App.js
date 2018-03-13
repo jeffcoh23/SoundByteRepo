@@ -7,7 +7,7 @@ import FriendList from './FriendList'
 import { Provider as MobXProvider, observer } from 'mobx-react/native';
 import Store from '../stores/Store'
 import MainNav from '../nav/MainNav'
-import Navigation from '../nav/Navigation'
+import { Navigation, Stack } from '../nav/Navigation'
 import SongView from './SongView'
 
 
@@ -19,7 +19,7 @@ class App extends React.Component {
     return (
       <MobXProvider Store={Store}>
           <View style={styles.container}>
-            <Navigation />
+            <Stack />
           </View>
     </MobXProvider>
 

@@ -16,7 +16,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 @observer
 class FriendList extends React.Component {
   static navigationOptions = {
-    tabBarLabel: 'Search',
+    tabBarLabel: 'Friends',
     tabBarIcon: ({ white }) =>
       <Icon name={'person-add'} size={35} style={{ color: 'white' }} />
   };

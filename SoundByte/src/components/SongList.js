@@ -2,8 +2,8 @@ import React from 'react'
 import { FlatList, Text, View, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { inject, observer } from 'mobx-react'
 import SongItem from './SongItem'
-import { Container, Header, Item, Input, Button } from 'native-base';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import { Container, Icon, Header, Item, Input, Button } from 'native-base';
+//import Icon from 'react-native-vector-icons/MaterialIcons';
 
 @inject('Store')
 @observer
@@ -13,7 +13,7 @@ class SongList extends React.Component {
     header: true,
     title: 'Search',
     tabBarIcon: ({ white }) =>
-      <Icon name={'search'} size={35} style={{ color: 'white' }} />
+      <Icon name={'md-search'} size={35} style={{ color: 'white' }} />
   };
 
   showList = () => {
@@ -45,7 +45,7 @@ class SongList extends React.Component {
               <Item>
                 <Icon name="search" />
                 <Input placeholder="Search anything" onChangeText={searchText => this.props.Store.searchSong(searchText)}/>
-                <Icon name="ios-people" />
+                <Icon name="musical-notes" />
               </Item>
               <Button transparent>
                 <Text>Search</Text>
