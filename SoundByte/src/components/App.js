@@ -1,6 +1,5 @@
 import React from 'react';
 import { Image, Text, View, StyleSheet } from 'react-native';
-import Header from './Header';
 import Playlist from './Playlist'
 import MyStory from './MyStory'
 import FriendList from './FriendList'

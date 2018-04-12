@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, ScrollView, StyleSheet, ListView } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import StoryCard from './StoryCard';
+import FeedItem from './FeedItem';
 import { inject, observer } from 'mobx-react';
 import SongPlayer from './SongPlayer'
 @inject('Store')
@@ -25,19 +25,25 @@ class SongFeed extends React.Component {
     return this.props.navigation.navigate('SongPlayer', { song: song })
   };
 
-  mapStoryCards = (song) => {
-    return <StoryCard key={song.id} item={song} onSelectSong={() => this.handleSongClick(song)}/>
+  mapFeedItems = (song) => {
+    return <FeedItem key={song.id} item={song} onSelectSong={() => this.handleSongClick(song)}/>
   }
 
   render() {
     return (
-      <ScrollView>
-        {this.props.Store.getSongList.map(this.mapStoryCards)}
+      <ScrollView style={styles.container}>
+        {this.props.Store.getSongList.map(this.mapFeedItems)}
       </ScrollView>
 
     )
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: 'lightgrey',
+  }
+})
 
 
 export default SongFeed;
