@@ -1,7 +1,5 @@
 import React from 'react';
 import { Image, Text, View, StyleSheet } from 'react-native';
-import Playlist from './Playlist'
-import MyStory from './MyStory'
 import FriendList from './FriendList'
 import { Provider as MobXProvider, observer } from 'mobx-react/native';
 import Store from '../stores/Store'

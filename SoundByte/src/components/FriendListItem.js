@@ -1,65 +1,95 @@
 import React from 'react'
-import {
-  Text,
-  View,
-  StyleSheet,
-  Image,
-  TouchableWithoutFeedback
-} from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import Dimensions from 'Dimensions';
 
-const DEVICE_WIDTH = Dimensions.get('window').width;
+class FriendListItem extends React.Component {
+  constructor(props){
+    super(props)
+  }
 
-const FriendListItem = (props) => {
-  return (
-    <View style={styles.container}>
-      <Image style={styles.profilePic} source={{uri: 'https://github.com/GeekyAnts/NativeBase-KitchenSink/raw/v2.2.0/screenshots/ios/list-avatar.png'}}/>
-      <View style={styles.friendBox}>
-        <Text style={styles.name}>{props.users.username}</Text>
-        <Text style={styles.length}>{Math.floor(Math.random() * 100)} Tracks</Text>
-        {/* <View style={styles.addButton}>
-          <Icon name={'person-add'} color={props.users.friend ? 'green' : 'black'} size={25}/>
-        </View> */}
+  handlePress = () => {
+    // use this.props.item.id
+  }
+
+  render(){
+    return (
+      <View style={styles.container}>
+        <View style={styles.songContainer}>
+          <Image style={styles.albumCover} source={{ uri: this.props.user.profilePic }}/>
+          <View style={styles.songDescriptionView}>
+            <Text style={styles.songTitle}>{this.props.user.username}</Text>
+          </View>
+        </View>
+        <TouchableOpacity style={styles.addFriend} onPress={this.props.handlePlayButton}>
+          <Text style={styles.addFriendText}> Add Friend </Text>
+        </TouchableOpacity>
       </View>
-    </View>
-  )
+    )
+  }
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    borderBottomWidth: 1,
-    borderColor: 'orange',
-    height: 80,
+    flexDirection: 'row',
+    borderBottomWidth: 2,
+    borderColor: 'lightgrey',
+    paddingVertical: 10,
+    justifyContent: 'space-between',
+    paddingLeft: 10,
+  },
+  songContainer: {
+    flex: .7,
+    alignItems: 'center',
+    flexDirection: 'row',
+    paddingLeft: 10,
+  },
+  addFriend: {
+    alignSelf: 'center',
+    borderWidth: 1,
+    marginHorizontal: 10,
+    borderColor: 'lightgrey',
+    borderRadius: 10,
+    height: 30,
+  },
+  addFriendText: {
+    fontSize: 14,
+    paddingVertical: 5,
+    paddingHorizontal: 10,
+    color: 'lightgrey',
+  },
+  songTitle: {
+    fontSize: 16,
+    color: 'black',
+  },
+  songArtist: {
+    fontSize: 14,
+    color: 'lightgrey',
+    flexWrap: 'wrap',
+  },
+  songBox: {
+    paddingLeft: 15,
     flexDirection: 'row'
   },
-  friendBox: {
-    justifyContent: 'center',
-    marginLeft: 20,
+  songDescriptionView: {
+    flexDirection: 'column',
+    flexWrap: 'wrap',
   },
-  name: {
-    width: DEVICE_WIDTH - 10,
-    fontSize: 22
-  },
-  profilePic: {
-    height: 60,
-    width: 60,
-    margin: 10,
-    borderRadius: 30,
-  },
-  length: {
-    color: 'lightgrey',
-    fontSize: 14,
-    marginTop: 5,
+  artist: {
+    justifyContent: 'flex-end',
+    flexDirection: 'column'
   },
   addButton: {
-    flex: 1,
-    paddingRight: 10,
-    justifyContent: 'flex-end',
-    alignItems: 'flex-end'
+    justifyContent: 'center',
+    alignItems: 'flex-end',
+    marginRight: 15,
+    flex: .2
   },
-
+  albumCover: {
+    width: 60,
+    height: 60,
+    marginRight: 8,
+  },
 })
 
 export default FriendListItem

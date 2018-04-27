@@ -25,7 +25,7 @@ class FriendList extends React.Component {
       <FlatList
         data={data}
         renderItem={ ({item}) =>
-          <FriendListItem key={item.id} users={item}/>
+          <FriendListItem key={item.id} user={item}/>
         }
         keyExtractor={(item, index) => index}
       />

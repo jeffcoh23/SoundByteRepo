@@ -1,9 +1,5 @@
 import { observable, action, computed } from 'mobx'
 import React from 'react'
-import Playlist from '../components/Playlist'
-import FriendList from '../components/FriendList'
-import SongList from '../components/SongList'
-import SongView from '../components/SongView'
 
 var base64 = require('base-64');
 
@@ -13,19 +9,6 @@ class Store {
   @observable songList = [];
   @observable playlistUser = '';
   @observable playlistIdArray = [];
-
-  @computed get MainComp(){
-    switch (this.navState) {
-      case 'SongList':
-        return <SongList/>
-      case 'FriendList':
-        return <FriendList/>
-      case 'SongView':
-        return <SongView/>
-      default:
-        return <Playlist/>
-    }
-  }
 
   @computed get getNavState(){
     return this.navState
