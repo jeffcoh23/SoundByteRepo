@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 // import { Container, Header, Content, List, ListItem, Thumbnail, Text, Body } from 'native-base';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import Icon from 'react-native-vector-icons/SimpleLineIcons';
 
 class SongItem extends React.Component {
   constructor(props){
@@ -10,6 +10,26 @@ class SongItem extends React.Component {
 
   handlePress = () => {
     // use this.props.item.id
+  }
+
+  renderAddSongButton = () => {
+    if (this.props.addSong) {
+      return (
+        <TouchableOpacity style={styles.addOrPlay} onPress={this.props.handlePlayButton}>
+          <Text style={styles.addOrPlayText}> Add Song </Text>
+        </TouchableOpacity>
+      )
+    }
+  }
+
+  renderHeartButton = () => {
+    if (this.props.addHeart) {
+      return (
+        <TouchableOpacity style={styles.heartButton} onPress={this.props.figureitout}>
+          <Icon style={{ fontSize: 25 }} name="heart" />
+        </TouchableOpacity>
+      )
+    }
   }
 
   render(){
@@ -22,9 +42,8 @@ class SongItem extends React.Component {
             <Text style={styles.songArtist}>{this.props.item.artists.map(artist => artist.name).join(', ')}</Text>
           </View>
         </View>
-        <TouchableOpacity style={styles.addOrPlay} onPress={this.props.handlePlayButton}>
-          <Text style={styles.addOrPlayText}> Add Song </Text>
-        </TouchableOpacity>
+        {this.renderAddSongButton()}
+        {this.renderHeartButton()}
       </View>
     )
   }
@@ -53,6 +72,10 @@ const styles = StyleSheet.create({
     borderColor: 'lightgrey',
     borderRadius: 10,
     height: 30,
+  },
+  heartButton: {
+    alignSelf: 'center',
+    marginRight: 10,
   },
   addOrPlayText: {
     fontSize: 14,

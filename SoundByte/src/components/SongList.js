@@ -5,7 +5,7 @@ import SongItem from './SongItem'
 import { Container, Icon, Header, Item, Input, Button } from 'native-base';
 import Dimensions from 'Dimensions';
 import data from '../data/sample_people_data.json'
-import FriendListItem from './FriendListItem'
+import AddFriendItem from './AddFriendItem'
 
 const DEVICE_WIDTH = Dimensions.get('window').width;
 
@@ -48,7 +48,7 @@ class SongList extends React.Component {
         <FlatList
           data={data}
           renderItem={ ({ item }) =>
-            <FriendListItem key={item.id} user={item}/>
+            <AddFriendItem key={item.id} user={item}/>
          }
          keyExtractor={(item, index) => index}
         />
@@ -94,6 +94,12 @@ class SongList extends React.Component {
           <TouchableOpacity onPress={this.switchToPeople} style={this.state.selectedTab === 'people' ? styles.activeTab : styles.regularTab}>
             <Text style={this.state.selectedTab === 'people' ? styles.selectedTabText : styles.regularTabText}>People</Text>
           </TouchableOpacity>
+          <TouchableOpacity onPress={this.switchToPeople} style={this.state.selectedTab === 'albums' ? styles.activeTab : styles.regularTab}>
+            <Text style={this.state.selectedTab === 'albums' ? styles.selectedTabText : styles.regularTabText}>Albums</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={this.switchToPeople} style={this.state.selectedTab === 'people' ? styles.activeTab : styles.regularTab}>
+            <Text style={this.state.selectedTab === 'people' ? styles.selectedTabText : styles.regularTabText}>People</Text>
+          </TouchableOpacity>
         </View>
         <View style={{flex: 1}}>
         {this.showContent()}
@@ -105,7 +111,7 @@ class SongList extends React.Component {
 
 const styles = StyleSheet.create({
   contentBar: {
-    flex: .1,
+    height: 40,
     width: DEVICE_WIDTH,
     flexDirection: 'row',
     alignItems: 'center',
@@ -136,13 +142,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   selectedTabText: {
-    paddingVertical: 10,
+    paddingVertical: 5,
     flex: 1,
     color: 'lightblue',
+    fontFamily: 'System',
     fontSize: 20
   },
   regularTabText: {
-    paddingVertical: 10,
+    fontFamily: 'System',
+    paddingVertical: 5,
     flex: 1,
     fontSize: 20
   }

@@ -2,36 +2,49 @@
   {
     "username": "jeffcoh23",
     "friend": true,
-    "profilePic": "https://cdn2.hercampus.com/styles/full_width_embed/s3/2014/10/12/nm0169480.jpg", 
+    "profilePic": "https://cdn2.hercampus.com/styles/full_width_embed/s3/2014/10/12/nm0169480.jpg",
+    "songCount": Math.floor(Math.random() * Math.floor(10))
   },
   {
     "username": "pscohen34",
     "friend": true,
-    "profilePic": "https://cdn2.hercampus.com/styles/full_width_embed/s3/2014/10/12/nm0169480.jpg", 
+    "profilePic": "https://cdn2.hercampus.com/styles/full_width_embed/s3/2014/10/12/nm0169480.jpg",
+    "songCount": Math.floor(Math.random() * Math.floor(10))
+  },
+  {
+    "username": "lionel_messi",
+    "friend": true,
+    "profilePic": "https://media-public.fcbarcelona.com/20157/0/document_thumbnail/20197/11/31/187/45817611/1.0-10/45817611.jpg",
+    "songCount": Math.floor(Math.random() * Math.floor(10))
   },
   {
     "username": "zoomjhc",
     "friend": true,
-    "profilePic": "https://cdn2.hercampus.com/styles/full_width_embed/s3/2014/10/12/nm0169480.jpg", 
+    "profilePic": "https://cdn2.hercampus.com/styles/full_width_embed/s3/2014/10/12/nm0169480.jpg",
+    "songCount": Math.floor(Math.random() * Math.floor(10))
   },
   {
     "username": "nlcohen",
     "friend": false,
-    "profilePic": "https://cdn2.hercampus.com/styles/full_width_embed/s3/2014/10/12/nm0169480.jpg", 
+    "profilePic": "https://cdn2.hercampus.com/styles/full_width_embed/s3/2014/10/12/nm0169480.jpg",
+    "songCount": Math.floor(Math.random() * Math.floor(10))
   },
   {
     "username": "dcohen",
     "friend": false,
-    "profilePic": "https://cdn2.hercampus.com/styles/full_width_embed/s3/2014/10/12/nm0169480.jpg", 
+    "profilePic": "https://cdn2.hercampus.com/styles/full_width_embed/s3/2014/10/12/nm0169480.jpg",
+    "songCount": Math.floor(Math.random() * Math.floor(10))
   },
   {
     "username": "jgalina",
     "friend": true,
-    "profilePic": "https://cdn2.hercampus.com/styles/full_width_embed/s3/2014/10/12/nm0169480.jpg", 
+    "profilePic": "https://cdn2.hercampus.com/styles/full_width_embed/s3/2014/10/12/nm0169480.jpg",
+    "songCount": Math.floor(Math.random() * Math.floor(10))
   },
   {
     "username": "aboehm",
     "friend": true,
-    "profilePic": "https://cdn2.hercampus.com/styles/full_width_embed/s3/2014/10/12/nm0169480.jpg", 
+    "profilePic": "https://cdn2.hercampus.com/styles/full_width_embed/s3/2014/10/12/nm0169480.jpg",
+    "songCount": Math.floor(Math.random() * Math.floor(10))
   },
 ]

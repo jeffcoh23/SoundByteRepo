@@ -1,12 +1,14 @@
 import { observable, action, computed } from 'mobx'
 import React from 'react'
+import data from './../data/sample_song_data'
 
 var base64 = require('base-64');
 
 class Store {
   @observable navState = '';
   @observable songQuery = '';
-  @observable songList = [];
+  //@observable songList = [];
+  @observable songList = data;
   @observable playlistUser = '';
   @observable playlistIdArray = [];
 
@@ -57,7 +59,9 @@ class Store {
           Authorization: `Bearer ${responseJson.access_token}`
         },
       }).then(res => {
-        this.songList = JSON.parse(res._bodyText).tracks.items.slice()
+        //this.songList = data
+         this.songList = JSON.parse(res._bodyText).tracks.items.slice()
+        //console.log(JSON.stringify(this.songList))
       })
     })
   }

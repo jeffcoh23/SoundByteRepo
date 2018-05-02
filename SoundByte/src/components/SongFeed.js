@@ -3,7 +3,8 @@ import { View, Text, ScrollView, StyleSheet, ListView } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import FeedItem from './FeedItem';
 import { inject, observer } from 'mobx-react';
-import SongPlayer from './SongPlayer'
+import SongControlBar from './SongControlBar'
+
 @inject('Store')
 @observer
 class SongFeed extends React.Component {
@@ -15,8 +16,9 @@ class SongFeed extends React.Component {
   }
   static navigationOptions = {
     tabBarLabel: 'Feed',
+    title: 'Feed',
     tabBarIcon: ({ white }) => (
-      <Icon name={'home'} size={45} style={{ color: 'white' }} />
+      <Icon name={'home'} size={35} style={{ color: 'white' }} />
     )
   };
 
@@ -31,9 +33,12 @@ class SongFeed extends React.Component {
 
   render() {
     return (
-      <ScrollView style={styles.container}>
-        {this.props.Store.getSongList.map(this.mapFeedItems)}
-      </ScrollView>
+      <View>
+        <ScrollView style={styles.container}>
+          {this.props.Store.getSongList.map(this.mapFeedItems)}
+        </ScrollView>
+      </View>
+
 
     )
   }
@@ -42,7 +47,7 @@ class SongFeed extends React.Component {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: 'lightgrey',
-  }
+  },
 })
 
 

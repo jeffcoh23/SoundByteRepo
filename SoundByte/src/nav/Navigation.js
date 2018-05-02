@@ -4,7 +4,8 @@ import SongList from '../components/SongList';
 import SongFeed from '../components/SongFeed';
 import LikeList from '../components/LikeList';
 import SongPlayer from '../components/SongPlayer';
-
+import SongControlBar from '../components/SongControlBar';
+import Settings from '../components/Settings';
 
 const Navigation = TabNavigator(
   {
@@ -16,7 +17,7 @@ const Navigation = TabNavigator(
   {
     tabBarOptions: {
       flex: 1,
-      activeTintColor: 'orange',
+      activeTintColor: 'lightblue',
       inactiveTintColor: 'white',
       swipeEnabled: true,
       showLabel: true,
@@ -29,8 +30,10 @@ const Navigation = TabNavigator(
 
 export const Stack = StackNavigator({
   Navigation: { screen: Navigation },
-  SongFeed: { screen: SongFeed },
-  SongPlayer: { screen: SongPlayer }
+  SongPlayer: { screen: SongPlayer },
+  Settings: { screen: Settings },
+  // Modal: {screen: Settings}
 }, {
+    mode: 'modal',
     initialRouteName: 'Navigation',
 })

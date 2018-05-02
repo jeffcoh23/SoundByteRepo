@@ -16,16 +16,17 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 @observer
 class FriendList extends React.Component {
   static navigationOptions = {
-    tabBarLabel: 'Friends',
+    tabBarLabel: 'Playlist',
+    title: 'Playlist',
     tabBarIcon: ({ white }) =>
-      <Icon name={'person-add'} size={35} style={{ color: 'white' }} />
+      <Icon name={'list'} size={35} style={{ color: 'white' }} />
   };
   render = () => {
     return (
       <FlatList
         data={data}
         renderItem={ ({item}) =>
-          <FriendListItem key={item.id} user={item}/>
+          <FriendListItem addSong key={item.id} user={item}/>
         }
         keyExtractor={(item, index) => index}
       />

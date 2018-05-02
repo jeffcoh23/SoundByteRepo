@@ -5,18 +5,26 @@ import {
   StyleSheet,
   FlatList,
   Image,
-  TouchableWithoutFeedback
+  TouchableWithoutFeedback,
+  TouchableOpacity
 } from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import Icon from 'react-native-vector-icons/EvilIcons';
+import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
+import { inject, observer } from 'mobx-react'
 import Dimensions from 'Dimensions';
+import LikeItem from './LikeItem'
+import Settings from './Settings'
 
 const DEVICE_WIDTH = Dimensions.get('window').width;
 
+@inject('Store')
+@observer
 export default class LikeList extends React.Component {
   static navigationOptions = {
-    tabBarLabel: 'Likes',
+    tabBarLabel: 'Me',
+    title: 'Current User Name',
     tabBarIcon: ({ white }) =>
-      <Icon name={'save'} size={35} style={{ color: 'white' }} />
+      <MaterialIcon name={'person'} size={35} style={{ color: 'white' }} />
   };
 
   showList = () => {
@@ -25,7 +33,7 @@ export default class LikeList extends React.Component {
         <FlatList
           data={this.props.Store.getSongList}
           renderItem={ ({ item }) =>
-            <SongItem item={item}/>
+            <LikeItem item={item}/>
          }
          keyExtractor={(item, index) => index}
         />
@@ -34,17 +42,41 @@ export default class LikeList extends React.Component {
     else{
       return (
         <Text>
-          hi
+          NOTHING TO SEE HERE FOLKS
         </Text>
       )
     }
   }
 
+  goToSettings = () => {
+    return <Settings style={{ zIndex: 1 }} />
+  }
+
   render(){
     return(
       <View style={styles.container}>
-        <View  style={styles.topNav}>
-
+        <View style={styles.topNav}>
+          <TouchableOpacity onPress={this.goToSettings} style={styles.settings}>
+            <MaterialIcon name={'settings'} size={35} style={{ color: 'lightgrey' }}/>
+          </TouchableOpacity>
+          <Image style={styles.profilePic} source={{ uri: 'https://media-public.fcbarcelona.com/20157/0/document_thumbnail/20197/11/31/187/45817611/1.0-10/45817611.jpg?t=1493315026000'}}/>
+          <View style={styles.text}>
+            <Text>
+              <Text style={styles.number}>280 </Text>
+              <Text style={styles.stats}>Likes</Text>
+            </Text>
+            <Text>
+              <Text style={styles.number}>90 </Text>
+              <Text style={styles.stats}>Followers</Text>
+            </Text>
+            <Text>
+              <Text style={styles.number}>110 </Text>
+              <Text style={styles.stats}>Following</Text>
+            </Text>
+          </View>
+        </View>
+        <View style={{flex: 1}}>
+          {this.showList()}
         </View>
       </View>
 
@@ -56,9 +88,39 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  topNav: {
+  number: {
+    color: 'lightblue',
+    fontWeight: 'bold',
+    fontSize: 16,
+  },
+  stats: {
+    fontSize: 16
+  },
+  text: {
+    flexDirection: 'row',
+    flex: 1,
     width: DEVICE_WIDTH,
-    height: 200,
-    backgroundColor: 'black'
+    paddingHorizontal: 30,
+    justifyContent: 'space-between',
+  },
+  profilePic: {
+    height: 160,
+    width: 120,
+    borderRadius: 60,
+    marginTop: 40,
+    marginBottom: 20
+  },
+  topNav: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderBottomWidth: 3,
+    borderColor: 'lightgrey',
+
+  },
+  settings: {
+    position: 'absolute',
+    top: 10,
+    left: 10,
   }
 })

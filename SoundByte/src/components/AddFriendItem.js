@@ -1,8 +1,8 @@
 import React from 'react'
 import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
-import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
-class FriendListItem extends React.Component {
+class AddFriendItem extends React.Component {
   constructor(props){
     super(props)
   }
@@ -18,12 +18,11 @@ class FriendListItem extends React.Component {
           <Image style={styles.albumCover} source={{ uri: this.props.user.profilePic }}/>
           <View style={styles.songDescriptionView}>
             <Text style={styles.songTitle}>{this.props.user.username}</Text>
-            <Text style={styles.songCount}>{this.props.user.songCount} songs</Text>
           </View>
         </View>
-        {/* <TouchableOpacity style={styles.playButton} onPress={this.props.handlePlayButton}>
-          <SimpleLineIcons style={{color: 'lightgrey'}} name={'control-play'} size={30} />
-        </TouchableOpacity> */}
+        <TouchableOpacity style={styles.addFriend} onPress={this.props.handlePlayButton}>
+          <Text style={styles.addFriendText}> Add Friend </Text>
+        </TouchableOpacity>
       </View>
     )
   }
@@ -45,9 +44,13 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     paddingLeft: 10,
   },
-  playButton: {
+  addFriend: {
     alignSelf: 'center',
+    borderWidth: 1,
     marginHorizontal: 10,
+    borderColor: 'lightgrey',
+    borderRadius: 10,
+    height: 30,
   },
   addFriendText: {
     fontSize: 14,
@@ -59,9 +62,10 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: 'black',
   },
-  songCount: {
+  songArtist: {
     fontSize: 14,
     color: 'lightgrey',
+    flexWrap: 'wrap',
   },
   songBox: {
     paddingLeft: 15,
@@ -82,11 +86,10 @@ const styles = StyleSheet.create({
     flex: .2
   },
   albumCover: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
+    width: 60,
+    height: 60,
     marginRight: 8,
   },
 })
 
-export default FriendListItem
+export default AddFriendItem
