@@ -17,13 +17,13 @@ class SongPlayer extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-      //song: this.props.navigation.state.params.song
+      song: this.props.navigation.state.params.song
     }
   }
 
-  // componentDidMount(){
-  //   this.initializeAndPlay(this.state.song)
-  // }
+  componentDidMount(){
+    this.initializeAndPlay(this.state.song)
+  }
 
   initializeAndPlay = (song) => {
     let player = new Player(song.preview_url).prepare()
@@ -74,9 +74,9 @@ class SongPlayer extends React.Component {
   render(){
     return (
       <View style={{flex: 1}}>
-        {/* {this.showCurrentTrack()}
+        {this.showCurrentTrack()}
         {this.showPlaylistBar()}
-        {this.showList()} */}
+        {this.showList()}
       </View>
 
     )

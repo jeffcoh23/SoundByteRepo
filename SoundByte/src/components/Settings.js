@@ -1,20 +1,34 @@
-import React from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import React, { Component } from 'react';
+import { Modal, Text, TouchableHighlight, View } from 'react-native';
 
-class Settings extends React.Component {
-  render(){
-    return(
-      <View style={styles.container}>
-        <Modal style={{flex: 1, backgroundColor: 'black'}}> </Modal>
+class Settings extends Component {
+  state = {
+    modalVisible: false
+  };
+
+  setModalVisible(visible) {
+    this.setState({ modalVisible: visible });
+  }
+
+  render() {
+    return (
+      <View
+        animationType={"slide"}
+        style={{ flex: .5, flexDirection: 'column', justifyContent: 'flex-end' }}
+      >
+        <Modal
+          style={{
+            height: 50,
+            width: '100%',
+            // backgroundColor: '#fff',
+            justifyContent: 'center'
+          }}
+        >
+          <Text>Testing a modal with transparent background</Text>
+        </Modal>
       </View>
-    )
+    );
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1
-  }
-})
-
-export default Settings
+export default Settings;

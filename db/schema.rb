@@ -10,25 +10,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180313231916) do
+ActiveRecord::Schema.define(version: 20180503004908) do
 
-  create_table "relationships", force: :cascade do |t|
+  create_table "follows", force: :cascade do |t|
     t.integer "follower_id", null: false
     t.integer "followed_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["followed_id"], name: "index_relationships_on_followed_id"
-    t.index ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true
-    t.index ["follower_id"], name: "index_relationships_on_follower_id"
+    t.index ["followed_id"], name: "index_follows_on_followed_id"
+    t.index ["follower_id", "followed_id"], name: "index_follows_on_follower_id_and_followed_id", unique: true
+    t.index ["follower_id"], name: "index_follows_on_follower_id"
+  end
+
+  create_table "likes", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "song_id", null: false
   end
 
   create_table "songs", force: :cascade do |t|
-    t.string "song_id", null: false
+    t.string "track_uid", null: false
+    t.string "image_url"
+    t.string "preview_url"
+    t.string "song_title"
+    t.string "artists"
     t.string "service_name", null: false
-    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_songs_on_user_id"
+  end
+
+  create_table "user_songs", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "song_id", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -45,6 +57,8 @@ ActiveRecord::Schema.define(version: 20180313231916) do
     t.string "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "authentication_token", limit: 30
+    t.index ["authentication_token"], name: "index_users_on_authentication_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

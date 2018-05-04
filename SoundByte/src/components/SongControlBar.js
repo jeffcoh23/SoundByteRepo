@@ -14,14 +14,10 @@ class SongControlBar extends React.Component {
   }
 
   goToPlayer = (song = this.props.Store.getSongList[0]) => {
-    //return this.props.navigation.navigate('SongPlayer', { song: song })
-    return (
-      <View>
-        <Modal animationType="slide" visible={true} style={{height: 500, flex: 1}}>
-          <SongPlayer song={song} />
-        </Modal>
-      </View>
-    )
+    return this.props.navigation.navigate('SongPlayer', { song: song })
+    // return (
+    //   <SongPlayer song={song} />
+    // )
   }
 
   //TODO: Only show if there is a current song

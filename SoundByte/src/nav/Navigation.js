@@ -28,12 +28,24 @@ const Navigation = TabNavigator(
   }
 );
 
+// export const SettingsStack = StackNavigator(
+//   {
+//     Settings: { screen: Settings }
+//   },
+//   {
+//     mode: 'modal',
+//     headerMode: 'none',
+//     header:
+//     cardStyle:{
+//       backgroundColor:"transparent",
+//       opacity:0.99
+//     }
+//   })
+
 export const Stack = StackNavigator({
   Navigation: { screen: Navigation },
   SongPlayer: { screen: SongPlayer },
   Settings: { screen: Settings },
-  // Modal: {screen: Settings}
 }, {
-    mode: 'modal',
     initialRouteName: 'Navigation',
 })

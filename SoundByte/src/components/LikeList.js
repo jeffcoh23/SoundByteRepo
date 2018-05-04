@@ -13,8 +13,6 @@ import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import { inject, observer } from 'mobx-react'
 import Dimensions from 'Dimensions';
 import LikeItem from './LikeItem'
-import Settings from './Settings'
-
 const DEVICE_WIDTH = Dimensions.get('window').width;
 
 @inject('Store')
@@ -49,7 +47,7 @@ export default class LikeList extends React.Component {
   }
 
   goToSettings = () => {
-    return <Settings style={{ zIndex: 1 }} />
+    return this.props.navigation.navigate('Settings')
   }
 
   render(){

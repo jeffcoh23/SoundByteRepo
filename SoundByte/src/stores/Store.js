@@ -12,6 +12,12 @@ class Store {
   @observable playlistUser = '';
   @observable playlistIdArray = [];
 
+
+  // Auth
+  @observable loggedIn = false;
+  @observable authToken = undefined;
+  @observable email = undefined;
+
   @computed get getNavState(){
     return this.navState
   }
@@ -38,6 +44,23 @@ class Store {
 
   @action addToPlaylistIdArray = (songId) => {
     this.playlistIdArray.push(songId);
+  }
+
+  @action assignAuth = (response) => {
+    this.auth = response
+  }
+
+  @action login = (url, data={}) => {
+    //const promise = new Promise(function() {});
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'X-User-Token': `${data.token}`,
+        'X-User-Email': `${data.email}`
+      },
+    }).then(response => response.json())
+    .then(data => {this.authToken = data.authentication_token, this.email = data.email, this.loggedIn = true})
+    .catch(error => console.log(error))
   }
 
   @action searchSong = (searchText) => {
