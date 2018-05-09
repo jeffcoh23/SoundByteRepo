@@ -18,29 +18,45 @@ ActiveRecord::Schema.define(version: 20180503004908) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["followed_id"], name: "index_follows_on_followed_id"
-    t.index ["follower_id", "followed_id"], name: "index_follows_on_follower_id_and_followed_id", unique: true
     t.index ["follower_id"], name: "index_follows_on_follower_id"
   end
 
   create_table "likes", force: :cascade do |t|
     t.integer "user_id", null: false
+    t.integer "playlist_item_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["playlist_item_id"], name: "index_likes_on_playlist_item_id"
+    t.index ["user_id"], name: "index_likes_on_user_id"
+  end
+
+  create_table "playlist_items", force: :cascade do |t|
+    t.integer "user_id", null: false
     t.integer "song_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["song_id"], name: "index_playlist_items_on_song_id"
+    t.index ["user_id"], name: "index_playlist_items_on_user_id"
+  end
+
+  create_table "plays", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "playlist_item_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["playlist_item_id"], name: "index_plays_on_playlist_item_id"
+    t.index ["user_id"], name: "index_plays_on_user_id"
   end
 
   create_table "songs", force: :cascade do |t|
     t.string "track_uid", null: false
     t.string "image_url"
-    t.string "preview_url"
-    t.string "song_title"
-    t.string "artists"
-    t.string "service_name", null: false
+    t.string "preview_url", null: false
+    t.string "song_title", null: false
+    t.string "artists", null: false
+    t.string "service_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "user_songs", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "song_id", null: false
   end
 
   create_table "users", force: :cascade do |t|

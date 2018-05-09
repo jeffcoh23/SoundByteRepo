@@ -7,6 +7,9 @@ class FriendListItem extends React.Component {
     super(props)
   }
 
+  componentDidMount(){
+  }
+
   handlePress = () => {
     // use this.props.item.id
   }
@@ -15,10 +18,10 @@ class FriendListItem extends React.Component {
     return (
       <View style={styles.container}>
         <View style={styles.songContainer}>
-          <Image style={styles.albumCover} source={{ uri: this.props.user.profilePic }}/>
+          <Image style={styles.albumCover} source={{ uri: this.props.user.profile_picture }}/>
           <View style={styles.songDescriptionView}>
-            <Text style={styles.songTitle}>{this.props.user.username}</Text>
-            <Text style={styles.songCount}>{this.props.user.songCount} songs</Text>
+            <Text style={styles.songTitle}>{this.props.user.user_name}</Text>
+            <Text style={styles.songCount}>{this.props.user.song_count} songs</Text>
           </View>
         </View>
         {/* <TouchableOpacity style={styles.playButton} onPress={this.props.handlePlayButton}>

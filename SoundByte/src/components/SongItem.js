@@ -12,10 +12,14 @@ class SongItem extends React.Component {
     // use this.props.item.id
   }
 
+  handleLike = () => {
+    // use this.props.item.id
+  }
+
   renderAddSongButton = () => {
     if (this.props.addSong) {
       return (
-        <TouchableOpacity style={styles.addOrPlay} onPress={this.props.handlePlayButton}>
+        <TouchableOpacity style={styles.addOrPlay} onPress={this.props.handleAddSong}>
           <Text style={styles.addOrPlayText}> Add Song </Text>
         </TouchableOpacity>
       )
@@ -25,7 +29,7 @@ class SongItem extends React.Component {
   renderHeartButton = () => {
     if (this.props.addHeart) {
       return (
-        <TouchableOpacity style={styles.heartButton} onPress={this.props.figureitout}>
+        <TouchableOpacity style={styles.heartButton} onPress={this.props.handleLike}>
           <Icon style={{ fontSize: 25 }} name="heart" />
         </TouchableOpacity>
       )

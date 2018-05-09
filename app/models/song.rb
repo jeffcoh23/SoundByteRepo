@@ -1,3 +1,4 @@
 class Song < ApplicationRecord
-  belongs_to :user, foreign_key: :user_id
+  validates :track_uid, uniqueness: true
+  has_many :playlist_item, dependent: :destroy
 end

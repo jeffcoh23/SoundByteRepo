@@ -13,8 +13,17 @@ import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 import { inject, observer } from 'mobx-react'
 
 @inject('Store')
+@inject('Feed')
+
 @observer
 class FeedItem extends React.Component {
+  constructor(props){
+    super(props)
+  }
+
+  // componentDidMount() {
+  //   debugger
+  // }
 
   showSongView = () => {
     this.props.onSelectSong
@@ -28,10 +37,10 @@ class FeedItem extends React.Component {
       >
         <View style={styles.box}>
           <View style={{flex: .5, flexDirection: 'row', alignItems: 'center'}}>
-            <Image style={styles.profilePic} source={{ uri: this.props.item.album.images[0].url }}/>
+            <Image style={styles.profilePic} source={{ uri: this.props.item.image_url }}/>
             <View>
-              <Text style={{fontSize: 12}}>jeffcoh23</Text>
-              <Text style={{fontSize: 12}}>1 hour ago</Text>
+              <Text style={{fontSize: 12}}>{this.props.item.song_owner}</Text>
+              <Text style={{fontSize: 12}}>{this.props.item.created_at}</Text>
             </View>
           </View>
           <View style={styles.likeAndPlay}>
@@ -47,9 +56,9 @@ class FeedItem extends React.Component {
         </View>
         <TouchableWithoutFeedback onPress={this.props.onSelectSong} style={{flex: 1}}>
           <View style={{flex: 1}}>
-            <Image style={{flex: 1, marginTop: 8}} source={{ uri: this.props.item.album.images[0].url }}/>
-            <Text numberOfLines={1} style={styles.songTitle}>{this.props.item.name}</Text>
-            <Text numberOfLines={1} style={styles.songArtist}>{this.props.item.artists.map(artist => artist.name).join(', ')}</Text>
+            <Image style={{flex: 1, marginTop: 8}} source={{ uri: this.props.item.image_url }}/>
+            <Text numberOfLines={1} style={styles.songTitle}>{this.props.item.song_title}</Text>
+            <Text numberOfLines={1} style={styles.songArtist}>{this.props.item.artists}</Text>
           </View>
           {/* <Icon style={styles.statsBarIcon} name={'favorite'} size={35}/> */}
 

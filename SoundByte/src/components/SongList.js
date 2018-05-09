@@ -6,10 +6,13 @@ import { Container, Icon, Header, Item, Input, Button } from 'native-base';
 import Dimensions from 'Dimensions';
 import data from '../data/sample_people_data.json'
 import AddFriendItem from './AddFriendItem'
-
+import SbApiRoutes from '../Api/SbApiRoutes'
+const ApiRoutes = new SbApiRoutes();
 const DEVICE_WIDTH = Dimensions.get('window').width;
 
+@inject('PlaylistItem')
 @inject('Store')
+
 @observer
 class SongList extends React.Component {
   constructor(props){
@@ -63,13 +66,24 @@ class SongList extends React.Component {
     }
   }
 
+  handleLike = (e) => {
+    cosole.log('yoo')
+    debugger
+  }
+
+  handleAddSong = (song) => {
+    artists = song.artists.map(artist => artist.name).join(', ')
+    let data = { song: { service_name: 'Spotify', song_title: song.name, preview_url: song.preview_url, artists: artists, track_uid: song.id, image_url: song.album.images[0].url } }
+    this.props.PlaylistItem.add(data)
+  }
+
   showList = () => {
     if (this.props.Store.getSongList){
       return(
         <FlatList
           data={this.props.Store.getSongList}
           renderItem={ ({ item }) =>
-            <SongItem buttonType="play" item={item}/>
+            <SongItem addSong handleAddSong={() => this.handleAddSong(item)} handleLike={this.handleLike} buttonType="play" item={item}/>
          }
          keyExtractor={(item, index) => index}
         />
@@ -88,18 +102,18 @@ class SongList extends React.Component {
       <View style={{flex: 1}}>
         <TextInput style={styles.searchBar} placeholder="Search anything" onChangeText={searchText => this.props.Store.searchSong(searchText)}/>
         <View style={styles.contentBar}>
-          <TouchableOpacity onPress={this.switchToTracks} style={this.state.selectedTab === 'tracks' ? styles.activeTab : styles.regularTab}>
-            <Text style={this.state.selectedTab === 'tracks' ? styles.selectedTabText : styles.regularTabText}>Tracks</Text>
-          </TouchableOpacity>
           <TouchableOpacity onPress={this.switchToPeople} style={this.state.selectedTab === 'people' ? styles.activeTab : styles.regularTab}>
             <Text style={this.state.selectedTab === 'people' ? styles.selectedTabText : styles.regularTabText}>People</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={this.switchToTracks} style={this.state.selectedTab === 'tracks' ? styles.activeTab : styles.regularTab}>
+            <Text style={this.state.selectedTab === 'tracks' ? styles.selectedTabText : styles.regularTabText}>Tracks</Text>
           </TouchableOpacity>
           <TouchableOpacity onPress={this.switchToPeople} style={this.state.selectedTab === 'albums' ? styles.activeTab : styles.regularTab}>
             <Text style={this.state.selectedTab === 'albums' ? styles.selectedTabText : styles.regularTabText}>Albums</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={this.switchToPeople} style={this.state.selectedTab === 'people' ? styles.activeTab : styles.regularTab}>
+          {/* <TouchableOpacity onPress={this.switchToPeople} style={this.state.selectedTab === 'people' ? styles.activeTab : styles.regularTab}>
             <Text style={this.state.selectedTab === 'people' ? styles.selectedTabText : styles.regularTabText}>People</Text>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
         </View>
         <View style={{flex: 1}}>
         {this.showContent()}

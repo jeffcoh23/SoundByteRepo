@@ -8,18 +8,21 @@ import {
   TouchableOpacity
 } from 'react-native';
 import FriendListItem from './FriendListItem'
-import data from '../data/sample_people_data.json'
 import { inject, observer } from 'mobx-react';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 
-@observer
+@inject('User') @observer
 class FriendList extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-      showSongs: false
+      showSongs: false,
     }
+  }
+
+  componentDidMount() {
+    this.props.User.fetchAll()
   }
   static navigationOptions = {
     tabBarLabel: 'Playlist',
@@ -47,7 +50,7 @@ class FriendList extends React.Component {
         </View>
         <FlatList
           style={{flex: 1}}
-          data={data}
+          data={this.props.User.all}
           renderItem={ ({item}) =>
             <FriendListItem style={{flex: 1}} addSong key={item.id} user={item}/>
           }

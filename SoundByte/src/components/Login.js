@@ -1,24 +1,40 @@
 import React from 'react'
 import { View, Text, Image, TextInput, StyleSheet, TouchableOpacity } from 'react-native'
-import SbApi from '../Api/SbApi'
-
-const Api = new SbApi();
+import Api from '../Api'
+import SbApiRoutes from '../Api/SbApiRoutes'
+const ApiRoutes = new SbApiRoutes();
 import { inject, observer } from 'mobx-react';
 
-import Store from '../stores/Store'
+import stores from '../stores'
 
-@inject('Store')
+@inject('User')
 @observer
 class Login extends React.Component {
-  pressStuff = () => {
-    this.props.Store.login('http://localhost:3000/v1/sessions.json?email=jeffcoh23@gmail.com&password=Test12345', { email: 'jeffcoh23@gmail.com', token: 'NTF355z2xt-fVBg6RQtP' })
+  constructor(props){
+    super(props)
+    this.state = {
+      email: '',
+      password: '',
+      username: ''
+    }
+  }
+  login = () => {
+    console.log(this.state.email)
+    console.log(this.state.password)
+    this.props.User.signIn(this.state.email, this.state.password)
   }
   render(){
     return(
       <View style={styles.loginBackground}>
-        <TouchableOpacity onPress={this.pressStuff}>
-          <Text>createUsdfser</Text>
+        <TextInput style={styles.username} onChangeText={email => this.setState({ email })} placeholder={'Enter an email'} />
+          <TextInput style={styles.username} onChangeText={username => this.setState({ username })} placeholder={'Enter a username'} />
+          <TextInput style={styles.username} onChangeText={password => this.setState({ password })} placeholder={'Enter a password'} />
+          <TouchableOpacity style={styles.signIn} onPress={this.login}>
+            <Text> Sign in</Text>
         </TouchableOpacity>
+        <TouchableOpacity style={styles.signUp} onPress={this.pressStuff}>
+          <Text> Sign up</Text>
+      </TouchableOpacity>
       </View>
     )
   }
@@ -29,6 +45,18 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  username: {
+
+  },
+  password: {
+
+  },
+  signIn: {
+
+  },
+  signUp: {
+
   }
 })
 

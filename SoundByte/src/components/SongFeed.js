@@ -6,6 +6,8 @@ import { inject, observer } from 'mobx-react';
 import SongControlBar from './SongControlBar'
 
 @inject('Store')
+@inject('Feed')
+
 @observer
 class SongFeed extends React.Component {
   constructor(props){
@@ -19,8 +21,37 @@ class SongFeed extends React.Component {
     title: 'Feed',
     tabBarIcon: ({ white }) => (
       <Icon name={'home'} size={35} style={{ color: 'white' }} />
-    )
+    ),
+    // tabBarOnPress: ({ previousScene, scene, jumpToIndex }) => {
+    //       this.props.Feed.fetchAll()
+    //       const { route, focused, index } = scene;
+    //       if (!focused) {
+    //         if (route.index > 0) {
+    //           const tabRoute = route.routeName;
+    //           const { routeName, key } = route.routes[0];
+    //           navigation.dispatch(
+    //             NavigationActions.navigate({ routeName: tabRoute })
+    //           );
+    //           navigation.dispatch(
+    //             NavigationActions.reset({
+    //               index: 0,
+    //               key,
+    //               actions: [
+    //                 NavigationActions.navigate({ routeName })
+    //               ]
+    //             })
+    //           );
+    //         } else {
+    //           jumpToIndex(index);
+    //         }
+    //       }
+    //     },
   };
+
+  componentDidMount() {
+    this.props.Feed.fetchAll()
+  }
+
 
   handleSongClick = (song) => {
     this.setState({ song })
@@ -35,7 +66,7 @@ class SongFeed extends React.Component {
     return (
       <View>
         <ScrollView style={styles.container}>
-          {this.props.Store.getSongList.map(this.mapFeedItems)}
+          {this.props.Feed.all.map(this.mapFeedItems)}
         </ScrollView>
       </View>
 

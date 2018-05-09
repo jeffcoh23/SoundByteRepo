@@ -1,18 +1,20 @@
 import React from 'react'
 import { View, Text, Image, TextInput, StyleSheet, TouchableOpacity } from 'react-native'
-import SbApi from '../Api/SbApi'
+import Api from '../Api'
 import { inject, observer } from 'mobx-react';
 import Login from './Login'
-const Api = new SbApi();
 import { Navigation, Stack } from '../nav/Navigation'
-import Store from '../stores/Store'
+import stores from '../stores'
 
-@inject('Store')
+@inject('User')
 @observer
 class TheGoodStuff extends React.Component {
 
+  componentDidMount(){
+    this.props.User.signIn()
+  }
   renderContent = () => {
-    if (this.props.Store.email == undefined && this.props.Store.authToken == undefined){
+    if (this.props.User.loggedIn !== true){
       return <Login />
     }
     else {
